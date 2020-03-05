@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Library.Dtos;
-using Library.Stores;
+using Library.Services.Dtos;
+using Library.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -10,26 +9,17 @@ namespace Library.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        private readonly ItemStore store;
+        private readonly ItemService _itemService;
 
-        public ItemsController(ItemStore store)
+        public ItemsController(ItemService itemService)
         {
-            this.store = store;
+            _itemService = itemService;
         }
 
         [HttpGet("getItems")]
         public IEnumerable<ItemDto> GetItems()
         {
-            var allItems = store.GetItems();
-
-            return allItems.Select(x => new ItemDto()
-            {
-                Id = x.Id,
-                Name =  x.Name,
-                Author = x.Author,
-                Price = x.Price,
-                AvailableQuantity = x.AvailableQuantity
-            });
+            return _itemService.GetItems();
         }
     }
 }

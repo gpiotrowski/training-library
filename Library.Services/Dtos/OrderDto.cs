@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Dtos
+namespace Library.Services.Dtos
 {
     public class OrderDto
     {

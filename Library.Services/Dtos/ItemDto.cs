@@ -1,4 +1,4 @@
-﻿namespace Library.Dtos
+﻿namespace Library.Services.Dtos
 {
     public class ItemDto
     {

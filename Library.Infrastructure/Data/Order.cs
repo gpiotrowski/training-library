@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Data
+namespace Library.Infrastructure.Data
 {
     public class Order
     {

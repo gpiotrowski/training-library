@@ -1,4 +1,4 @@
-﻿namespace Library.Services.Dtos
+﻿namespace Library.Orders.Services.Dtos
 {
     public class NewOrderDto
     {

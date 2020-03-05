@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Library.Services.Dtos;
-using Library.Services.Services;
+﻿using System.Collections.Generic;
+using Library.Orders.Services.Dtos;
+using Library.Orders.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers

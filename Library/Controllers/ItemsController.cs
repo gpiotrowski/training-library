@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Library.Services.Dtos;
-using Library.Services.Services;
+using Library.Items.Services.Dtos;
+using Library.Items.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers

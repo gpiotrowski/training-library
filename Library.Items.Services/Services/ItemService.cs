@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Library.Infrastructure.Stores;
-using Library.Services.Dtos;
+using Library.Items.Services.Dtos;
 
-namespace Library.Services.Services
+namespace Library.Items.Services.Services
 {
     public class ItemService
     {

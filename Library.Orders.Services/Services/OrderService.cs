@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Library.Core;
 using Library.Infrastructure.Data;
 using Library.Infrastructure.Stores;
-using Library.Services.Dtos;
+using Library.Orders.Services.Dtos;
 
-namespace Library.Services.Services
+namespace Library.Orders.Services.Services
 {
     public class OrderService
     {

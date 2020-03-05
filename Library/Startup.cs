@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Library.Controllers;
+using Library.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +27,10 @@ namespace Library
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<UserStore>();
+            services.AddSingleton<OrderStore>();
+            services.AddSingleton<ItemStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -31,8 +31,6 @@ namespace Library
             services.AddTransient<ItemService>();
             services.AddTransient<OrderService>();
             services.AddTransient<IItemStore, Orders.Infrastructure.Stores.ItemStore>();
-            services.AddTransient<IOrderStore, OrderStore>();
-            services.AddTransient<IUserStore, UserStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

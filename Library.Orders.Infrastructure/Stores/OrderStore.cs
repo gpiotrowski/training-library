@@ -4,7 +4,7 @@ using Library.Orders.Infrastructure.Data;
 
 namespace Library.Orders.Infrastructure.Stores
 {
-    public class OrderStore
+    public class OrderStore : IOrderStore
     {
         public List<Order> Orders { get; set; }
 

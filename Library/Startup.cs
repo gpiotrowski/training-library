@@ -1,7 +1,7 @@
-using Library.Items.Infrastructure.Stores;
 using Library.Items.Services.Services;
 using Library.Orders.Infrastructure.Stores;
 using Library.Orders.Services.Services;
+using Library.Orders.Services.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,12 +24,15 @@ namespace Library
         {
             services.AddControllers();
 
-            services.AddSingleton<UserStore>();
-            services.AddSingleton<OrderStore>();
-            services.AddSingleton<ItemStore>();
+            services.AddSingleton<IUserStore, UserStore>();
+            services.AddSingleton<IOrderStore, OrderStore>();
+            services.AddSingleton<Items.Infrastructure.Stores.ItemStore>();
 
             services.AddTransient<ItemService>();
             services.AddTransient<OrderService>();
+            services.AddTransient<IItemStore, Orders.Infrastructure.Stores.ItemStore>();
+            services.AddTransient<IOrderStore, OrderStore>();
+            services.AddTransient<IUserStore, UserStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

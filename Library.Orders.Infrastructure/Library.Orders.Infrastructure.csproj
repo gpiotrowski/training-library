@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Items.Infrastructure\Library.Items.Infrastructure.csproj" />
+    <ProjectReference Include="..\Library.Orders.Services\Library.Orders.Services.csproj" />
+  </ItemGroup>
+
 </Project>

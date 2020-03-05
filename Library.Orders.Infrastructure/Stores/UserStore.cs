@@ -4,7 +4,7 @@ using Library.Orders.Infrastructure.Data;
 
 namespace Library.Orders.Infrastructure.Stores
 {
-    public class UserStore
+    public class UserStore : IUserStore
     {
         private List<User> _users { get; set; }
 

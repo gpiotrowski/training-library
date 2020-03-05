@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library.Items.Services\Library.Items.Services.csproj" />
+    <ProjectReference Include="..\Library.Orders.Infrastructure\Library.Orders.Infrastructure.csproj" />
     <ProjectReference Include="..\Library.Orders.Services\Library.Orders.Services.csproj" />
   </ItemGroup>
 

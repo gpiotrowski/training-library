@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
-using Library.Items.Infrastructure.Stores;
 using Library.Orders.Infrastructure.Data;
 using Library.Orders.Infrastructure.Stores;
 using Library.Orders.Services.Dtos;
+using Library.Orders.Services.Stores;
 
 namespace Library.Orders.Services.Services
 {
     public class OrderService
     {
-        private readonly UserStore _userStore;
-        private readonly OrderStore _orderStore;
-        private readonly ItemStore _itemStore;
+        private readonly IUserStore _userStore;
+        private readonly IOrderStore _orderStore;
+        private readonly IItemStore _itemStore;
 
-        public OrderService(ItemStore itemStore, UserStore userStore, OrderStore orderStore)
+        public OrderService(IItemStore itemStore, IUserStore userStore, IOrderStore orderStore)
         {
             _userStore = userStore;
             _orderStore = orderStore;

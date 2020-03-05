@@ -1,4 +1,4 @@
-﻿namespace Library.Infrastructure.Data
+﻿namespace Library.Orders.Infrastructure.Data
 {
     public class User
     {

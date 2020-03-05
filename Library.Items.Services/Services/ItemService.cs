@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Infrastructure.Stores;
+using Library.Items.Infrastructure.Stores;
 using Library.Items.Services.Dtos;
 
 namespace Library.Items.Services.Services

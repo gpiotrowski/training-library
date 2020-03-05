@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
-using Library.Infrastructure.Data;
-using Library.Infrastructure.Stores;
+using Library.Items.Infrastructure.Stores;
+using Library.Orders.Infrastructure.Data;
+using Library.Orders.Infrastructure.Stores;
 using Library.Orders.Services.Dtos;
 
 namespace Library.Orders.Services.Services

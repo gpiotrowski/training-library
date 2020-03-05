@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Infrastructure.Data;
+using Library.Items.Infrastructure.Data;
 
-namespace Library.Infrastructure.Stores
+namespace Library.Items.Infrastructure.Stores
 {
     public class ItemStore
     {

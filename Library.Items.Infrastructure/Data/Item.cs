@@ -1,4 +1,4 @@
-﻿namespace Library.Infrastructure.Data
+﻿namespace Library.Items.Infrastructure.Data
 {
     public class Item
     {

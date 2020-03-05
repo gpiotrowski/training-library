@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
-using Library.Orders.Infrastructure.Data;
-using Library.Orders.Infrastructure.Stores;
 using Library.Orders.Services.Dtos;
+using Library.Orders.Services.Entities;
 using Library.Orders.Services.Stores;
 
 namespace Library.Orders.Services.Services
@@ -45,6 +44,7 @@ namespace Library.Orders.Services.Services
                         UserId = orderDto.UserId
                     };
 
+                    _itemStore.UpdateItemQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
                     _orderStore.PlaceOrder(order);
 
                     return OperationStatus.CompletedSuccessfully;

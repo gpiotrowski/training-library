@@ -36,5 +36,11 @@ namespace Library.Items.Infrastructure.Stores
         {
             return _items.FindAll(x => ids.Contains(x.Id));
         }
+
+        public void Save(Item item)
+        {
+            _items.RemoveAll(x => x.Id == item.Id);
+            _items.Add(item);
+        }
     }
 }

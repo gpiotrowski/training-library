@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Library.Orders.Infrastructure.Data;
+using Library.Orders.Services.Entities;
 
-namespace Library.Orders.Infrastructure.Stores
+namespace Library.Orders.Services.Stores
 {
     public interface IOrderStore
     {

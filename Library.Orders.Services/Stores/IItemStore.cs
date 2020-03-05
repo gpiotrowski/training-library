@@ -7,5 +7,6 @@ namespace Library.Orders.Services.Stores
     {
         Item GetItemById(int id);
         IEnumerable<Item> GetItemsByIds(IEnumerable<int> ids);
+        void UpdateItemQuantity(int id, int availableQuantity);
     }
 }

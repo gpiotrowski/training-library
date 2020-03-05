@@ -1,4 +1,4 @@
-﻿namespace Library.Orders.Infrastructure.Data
+﻿namespace Library.Orders.Services.Entities
 {
     public class User
     {

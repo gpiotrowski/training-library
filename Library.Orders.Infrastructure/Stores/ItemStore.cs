@@ -31,6 +31,14 @@ namespace Library.Orders.Infrastructure.Stores
             return items.Select(Map);
         }
 
+        public void UpdateItemQuantity(int id, int availableQuantity)
+        {
+            var item = _itemStore.GetItemById(id);
+            item.AvailableQuantity = availableQuantity;
+
+            _itemStore.Save(item);
+        }
+
         private Item Map(ItemModuleItem item)
         {
             return new Item()

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Orders.Infrastructure.Data;
+using Library.Orders.Services.Entities;
+using Library.Orders.Services.Stores;
 
 namespace Library.Orders.Infrastructure.Stores
 {

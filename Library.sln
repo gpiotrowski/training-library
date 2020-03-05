@@ -5,19 +5,19 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{B95F8143-F32D-4671-9DCA-5E8E83E114E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Items.Services", "Library.Items.Services\Library.Items.Services.csproj", "{6BD860BB-396F-4E27-BA2E-E8BCCB90AB9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Items.Services", "Library.Items.Services\Library.Items.Services.csproj", "{6BD860BB-396F-4E27-BA2E-E8BCCB90AB9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Core", "Library.Core\Library.Core.csproj", "{DD0DE8A9-8681-42D5-B04C-0DED0037CAD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Core", "Library.Core\Library.Core.csproj", "{DD0DE8A9-8681-42D5-B04C-0DED0037CAD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Orders.Services", "Library.Orders.Services\Library.Orders.Services.csproj", "{252CCF1E-1348-473B-A73F-4A3ED0B7DDDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Orders.Domain", "Library.Orders.Domain\Library.Orders.Domain.csproj", "{252CCF1E-1348-473B-A73F-4A3ED0B7DDDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{B1D8C1EB-8E91-4D04-87A5-222FC82FF6FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{0A66FAA9-39FF-4C13-BEA7-77E7683BC709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Items.Infrastructure", "Library.Items.Infrastructure\Library.Items.Infrastructure.csproj", "{848ACCB9-79A1-407A-8400-B99DACC07D16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Items.Infrastructure", "Library.Items.Infrastructure\Library.Items.Infrastructure.csproj", "{848ACCB9-79A1-407A-8400-B99DACC07D16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Orders.Infrastructure", "Library.Orders.Infrastructure\Library.Orders.Infrastructure.csproj", "{A8C562F3-B108-474D-BE59-9BF8BEDB0680}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Orders.Infrastructure", "Library.Orders.Infrastructure\Library.Orders.Infrastructure.csproj", "{A8C562F3-B108-474D-BE59-9BF8BEDB0680}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

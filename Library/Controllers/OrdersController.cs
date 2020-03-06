@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Library.Leases.Domain.Dtos;
-using Library.Leases.Domain.Services;
+using Library.Leases.Application;
+using Library.Leases.Application.Dtos;
+using Library.Leases.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Controllers
@@ -10,17 +11,19 @@ namespace Library.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly LeaseService _leaseService;
+        private readonly GetReaderLeasesService _getReaderLeasesService;
+        private readonly LeaseBookService _leaseBookService;
 
-        public OrdersController(LeaseService leaseService)
+        public OrdersController(GetReaderLeasesService getReaderLeasesService, LeaseBookService leaseBookService)
         {
-            _leaseService = leaseService;
+            _getReaderLeasesService = getReaderLeasesService;
+            _leaseBookService = leaseBookService;
         }
 
         [HttpPost("placeOrder")]
         public IActionResult PlaceOrder(NewLeaseDto leaseDto)
         {
-            var operationStatus = _leaseService.LeaseBook(leaseDto);
+            var operationStatus = _leaseBookService.LeaseBook(leaseDto);
 
             if (!operationStatus.Success)
             {
@@ -33,7 +36,7 @@ namespace Library.Controllers
         [HttpGet("checkMyOrders")]
         public IEnumerable<LeaseDto> CheckMyOrders(Guid readerId)
         {
-            return _leaseService.GetReaderOrders(readerId);
+            return _getReaderLeasesService.GetReaderLeases(readerId);
         }
     }
 }

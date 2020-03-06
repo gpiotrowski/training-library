@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library.Items.Services\Library.Items.Services.csproj" />
+    <ProjectReference Include="..\Library.Leases.Domain\Library.Leases.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

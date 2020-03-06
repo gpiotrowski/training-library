@@ -27,5 +27,17 @@ namespace Library.Items.Services.Services
                 AvailableQuantity = x.AvailableQuantity
             });
         }
+
+        public int GetAvailableItemsQty(int itemId)
+        {
+            return _store.GetItemById(itemId).AvailableQuantity;
+        }
+
+        public void DecreaseItemAvailability(int itemId)
+        {
+            var item = _store.GetItemById(itemId);
+            item.AvailableQuantity--;
+            _store.Save(item);
+        }
     }
 }

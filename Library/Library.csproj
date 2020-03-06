@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library.Items.Services\Library.Items.Services.csproj" />
+    <ProjectReference Include="..\Library.Leases.Application\Library.Leases.Application.csproj" />
     <ProjectReference Include="..\Library.Leases.Domain\Library.Leases.Domain.csproj" />
     <ProjectReference Include="..\Library.Leases.Infrastructure\Library.Leases.Infrastructure.csproj" />
   </ItemGroup>

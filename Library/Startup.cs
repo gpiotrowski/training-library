@@ -1,5 +1,5 @@
 using Library.Items.Services.Services;
-using Library.Leases.Domain.Services;
+using Library.Leases.Application.Services;
 using Library.Leases.Domain.Stores;
 using Library.Leases.Infrastructure.Stores;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +28,8 @@ namespace Library
             services.AddSingleton<Items.Infrastructure.Stores.ItemStore>();
 
             services.AddTransient<ItemService>();
-            services.AddTransient<LeaseService>();
+            services.AddTransient<GetReaderLeasesService>();
+            services.AddTransient<LeaseBookService>();
             services.AddTransient<IBookCatalogueStore, BookCatalogueStore>();
         }
 

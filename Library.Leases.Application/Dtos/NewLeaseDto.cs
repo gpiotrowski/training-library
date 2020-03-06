@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Leases.Domain.Dtos
+namespace Library.Leases.Application.Dtos
 {
     public class NewLeaseDto
     {

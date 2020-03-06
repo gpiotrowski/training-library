@@ -1,4 +1,4 @@
-﻿namespace Library.Orders.Services.Entities
+﻿namespace Library.Leases.Domain.Entities
 {
     public class User
     {

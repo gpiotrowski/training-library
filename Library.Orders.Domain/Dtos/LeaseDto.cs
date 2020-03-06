@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Library.Orders.Services.Dtos
+namespace Library.Leases.Domain.Dtos
 {
-    public class OrderDto
+    public class LeaseDto
     {
         public int UserId { get; set; }
         public int BookId { get; set; }

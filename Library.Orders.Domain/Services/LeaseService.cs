@@ -2,32 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
-using Library.Orders.Services.Dtos;
-using Library.Orders.Services.Entities;
-using Library.Orders.Services.Stores;
+using Library.Leases.Domain.Dtos;
+using Library.Leases.Domain.Entities;
+using Library.Leases.Domain.Stores;
 
-namespace Library.Orders.Services.Services
+namespace Library.Leases.Domain.Services
 {
-    public class OrderService
+    public class LeaseService
     {
         private readonly IUserStore _userStore;
-        private readonly IOrderStore _orderStore;
-        private readonly IItemStore _itemStore;
+        private readonly ILeaseStore _leaseStore;
+        private readonly IBookCatalogueStore _bookCatalogueStore;
 
-        public OrderService(IItemStore itemStore, IUserStore userStore, IOrderStore orderStore)
+        public LeaseService(IBookCatalogueStore bookCatalogueStore, IUserStore userStore, ILeaseStore leaseStore)
         {
             _userStore = userStore;
-            _orderStore = orderStore;
-            _itemStore = itemStore;
+            _leaseStore = leaseStore;
+            _bookCatalogueStore = bookCatalogueStore;
         }
 
-        public OperationStatus PlaceOrder(NewOrderDto orderDto)
+        public OperationStatus PlaceOrder(NewLeaseDto leaseDto)
         {
-            var requestedBook = _itemStore.GetItemById(orderDto.BookId);
+            var requestedBook = _bookCatalogueStore.GetBookById(leaseDto.BookId);
             if (requestedBook?.AvailableQuantity > 0)
             {
-                var user = _userStore.GetUserById(orderDto.UserId);
-                var inProgressOrders = _orderStore.GetUserOrderInProgressQty(orderDto.UserId);
+                var user = _userStore.GetUserById(leaseDto.UserId);
+                var inProgressOrders = _leaseStore.GetUserLeaseInProgressQty(leaseDto.UserId);
 
                 if (user.BookLimit >= inProgressOrders)
                 {
@@ -35,17 +35,17 @@ namespace Library.Orders.Services.Services
 
                     _userStore.SaveUser(user);
 
-                    var order = new Order()
+                    var order = new Lease()
                     {
-                        BookId = orderDto.BookId,
+                        BookId = leaseDto.BookId,
                         IsReturned = false,
                         OrderDate = DateTime.UtcNow,
                         ReturnDate = null,
-                        UserId = orderDto.UserId
+                        UserId = leaseDto.UserId
                     };
 
-                    _itemStore.UpdateItemQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
-                    _orderStore.PlaceOrder(order);
+                    _bookCatalogueStore.UpdateBookQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
+                    _leaseStore.Lease(order);
 
                     return OperationStatus.CompletedSuccessfully;
                 }
@@ -66,18 +66,18 @@ namespace Library.Orders.Services.Services
             };
         }
 
-        public IEnumerable<OrderDto> GetUserOrders(int userId)
+        public IEnumerable<LeaseDto> GetUserOrders(int userId)
         {
-            var userOrders = _orderStore.GetUserOrders(userId);
+            var userOrders = _leaseStore.GetUserLeases(userId);
 
-            var orderDtos = userOrders.Select(x => new OrderDto()
+            var orderDtos = userOrders.Select(x => new LeaseDto()
             {
                 UserId = x.UserId,
                 BookId = x.BookId,
                 Date = x.OrderDate
             }).ToList();
 
-            var itemsFromOrders = _itemStore.GetItemsByIds(orderDtos.Select(x => x.BookId));
+            var itemsFromOrders = _bookCatalogueStore.GetBooksByIds(orderDtos.Select(x => x.BookId));
 
             return orderDtos.Select(x =>
             {

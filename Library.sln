@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Items.Services", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Core", "Library.Core\Library.Core.csproj", "{DD0DE8A9-8681-42D5-B04C-0DED0037CAD6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Orders.Domain", "Library.Orders.Domain\Library.Orders.Domain.csproj", "{252CCF1E-1348-473B-A73F-4A3ED0B7DDDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Leases.Domain", "Library.Orders.Domain\Library.Leases.Domain.csproj", "{252CCF1E-1348-473B-A73F-4A3ED0B7DDDA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orders", "Orders", "{B1D8C1EB-8E91-4D04-87A5-222FC82FF6FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Leases", "Leases", "{B1D8C1EB-8E91-4D04-87A5-222FC82FF6FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{0A66FAA9-39FF-4C13-BEA7-77E7683BC709}"
 EndProject

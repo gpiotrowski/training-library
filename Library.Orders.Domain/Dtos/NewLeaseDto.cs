@@ -1,6 +1,6 @@
-﻿namespace Library.Orders.Services.Dtos
+﻿namespace Library.Leases.Domain.Dtos
 {
-    public class NewOrderDto
+    public class NewLeaseDto
     {
         public int UserId { get; set; }
         public int BookId { get; set; }

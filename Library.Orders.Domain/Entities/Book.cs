@@ -1,6 +1,6 @@
-﻿namespace Library.Orders.Services.Entities
+﻿namespace Library.Leases.Domain.Entities
 {
-    public class Item
+    public class Book
     {
         public int Id { get; set; }
         public int AvailableQuantity { get; set; }

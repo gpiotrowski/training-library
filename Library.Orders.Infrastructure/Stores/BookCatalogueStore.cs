@@ -1,37 +1,36 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Orders.Services.Entities;
-using Library.Orders.Services.Stores;
-
+using Library.Leases.Domain.Entities;
+using Library.Leases.Domain.Stores;
 using ItemModuleItemStore = Library.Items.Infrastructure.Stores.ItemStore;
 using ItemModuleItem = Library.Items.Infrastructure.Data.Item;
 
 namespace Library.Orders.Infrastructure.Stores
 {
-    public class ItemStore : IItemStore
+    public class BookCatalogueStore : IBookCatalogueStore
     {
         private readonly ItemModuleItemStore _itemStore;
 
-        public ItemStore(ItemModuleItemStore itemStore)
+        public BookCatalogueStore(ItemModuleItemStore itemStore)
         {
             _itemStore = itemStore;
         }
 
-        public Item GetItemById(int id)
+        public Book GetBookById(int id)
         {
             var item = _itemStore.GetItemById(id);
 
             return Map(item);
         }
 
-        public IEnumerable<Item> GetItemsByIds(IEnumerable<int> ids)
+        public IEnumerable<Book> GetBooksByIds(IEnumerable<int> ids)
         {
             var items = _itemStore.GetItemsByIds(ids);
 
             return items.Select(Map);
         }
 
-        public void UpdateItemQuantity(int id, int availableQuantity)
+        public void UpdateBookQuantity(int id, int availableQuantity)
         {
             var item = _itemStore.GetItemById(id);
             item.AvailableQuantity = availableQuantity;
@@ -39,9 +38,9 @@ namespace Library.Orders.Infrastructure.Stores
             _itemStore.Save(item);
         }
 
-        private Item Map(ItemModuleItem item)
+        private Book Map(ItemModuleItem item)
         {
-            return new Item()
+            return new Book()
             {
                 Id = item.Id,
                 AvailableQuantity = item.AvailableQuantity,

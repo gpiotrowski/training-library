@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Library.Orders.Services.Entities
+namespace Library.Leases.Domain.Entities
 {
-    public class Order
+    public class Lease
     {
         public int UserId { get; set; }
         public int BookId { get; set; }

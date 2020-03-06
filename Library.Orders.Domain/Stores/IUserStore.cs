@@ -1,6 +1,6 @@
-﻿using Library.Orders.Services.Entities;
+﻿using Library.Leases.Domain.Entities;
 
-namespace Library.Orders.Services.Stores
+namespace Library.Leases.Domain.Stores
 {
     public interface IUserStore
     {

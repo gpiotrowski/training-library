@@ -1,4 +1,5 @@
 ﻿using Library.Core;
+using Library.Core.Infrastructure;
 using Library.Items.Services.Services;
 using Library.Leases.Application.Dtos;
 using Library.Leases.Domain.Exceptions;
@@ -9,11 +10,13 @@ namespace Library.Leases.Application.Services
     public class LeaseBookService
     {
         private readonly ItemService _itemService;
+        private readonly IEventPublisher _eventPublisher;
         private readonly IReaderStore _readerStore;
 
-        public LeaseBookService(IReaderStore readerStore, ItemService itemService)
+        public LeaseBookService(IReaderStore readerStore, ItemService itemService, IEventPublisher eventPublisher)
         {
             _itemService = itemService;
+            _eventPublisher = eventPublisher;
             _readerStore = readerStore;
         }
 
@@ -29,6 +32,12 @@ namespace Library.Leases.Application.Services
                     _itemService.DecreaseItemAvailability(leaseDto.BookId);
 
                     _readerStore.SaveReader(reader);
+
+                    var events = reader.FlushEvents();
+                    foreach (var domainEvent in events)
+                    {
+                        _eventPublisher.Publish(domainEvent);
+                    }
 
                     return OperationStatus.CompletedSuccessfully;
                 }

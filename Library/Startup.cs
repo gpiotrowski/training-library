@@ -1,5 +1,8 @@
+using System;
+using Library.Core.Infrastructure;
 using Library.Items.Services.Services;
 using Library.Leases.Application.Services;
+using Library.Leases.Domain.Events;
 using Library.Leases.Domain.Stores;
 using Library.Leases.Infrastructure.Stores;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +33,8 @@ namespace Library
             services.AddTransient<ItemService>();
             services.AddTransient<GetReaderLeasesService>();
             services.AddTransient<LeaseBookService>();
+
+            services.AddSingleton<IEventPublisher, InMemoryEventPublisher>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +53,9 @@ namespace Library
             {
                 endpoints.MapControllers();
             });
+
+            var eventPublisher = app.ApplicationServices.GetService<IEventPublisher>();
+            eventPublisher.Subscribe<BookLeased>(e => Console.WriteLine($"$Book leased for bookId = {e.BookId}"));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
+using Library.Leases.Domain.Events;
 using Library.Leases.Domain.Exceptions;
 using Library.Leases.Domain.Models.ValueObjects;
 
@@ -42,6 +43,7 @@ namespace Library.Leases.Domain.Models
             {
                 var lease = new Lease(bookId);
                 Leases.Add(lease);
+                RiseEvent(new BookLeased(bookId));
             }
             else
             {

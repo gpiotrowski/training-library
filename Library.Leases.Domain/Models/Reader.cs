@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
 using Library.Leases.Domain.Exceptions;
+using Library.Leases.Domain.Models.ValueObjects;
 
 namespace Library.Leases.Domain.Models
 {
     public class Reader : AggregateRoot
     {
         public string Name { get; set; }
-        public int MaxLeasePeriod { get; }
-        public int MaxConcurrentLeases { get; }
-        public int Score { get; }
+        public TimeSpan MaxLeasePeriod { get; private set; }
+        public int MaxConcurrentLeases { get; private set; }
+        public ReaderScore Score { get; private set; }
 
         private List<Lease> Leases { get; set; }
 
@@ -20,9 +21,9 @@ namespace Library.Leases.Domain.Models
             Id = id;
             Leases = new List<Lease>();
 
-            MaxLeasePeriod = 21;
+            MaxLeasePeriod = TimeSpan.FromDays(21);
             MaxConcurrentLeases = 3;
-            Score = 0;
+            Score = ReaderScore.Zero;
         }
 
         public void SetReaderName(string name)
@@ -46,6 +47,11 @@ namespace Library.Leases.Domain.Models
             {
                 throw new MaxConcurrentLeasesExceeded();
             }
+        }
+
+        public void IncreaseScore(int points)
+        {
+            Score = Score + new ReaderScore(points);
         }
     }
 }

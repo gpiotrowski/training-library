@@ -28,6 +28,18 @@ namespace Library.Items.Services.Services
             });
         }
 
+        public IEnumerable<ItemDto> GetItemsByIds(IEnumerable<int> ids)
+        {
+            return _store.GetItemsByIds(ids).Select(x => new ItemDto()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Author = x.Author,
+                Price = x.Price,
+                AvailableQuantity = x.AvailableQuantity
+            });
+        }
+
         public int GetAvailableItemsQty(int itemId)
         {
             return _store.GetItemById(itemId).AvailableQuantity;

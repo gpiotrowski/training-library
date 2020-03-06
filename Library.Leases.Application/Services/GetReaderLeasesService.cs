@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Library.Items.Services.Services;
 using Library.Leases.Application.Dtos;
 using Library.Leases.Domain.Stores;
 
@@ -8,12 +9,12 @@ namespace Library.Leases.Application.Services
 {
     public class GetReaderLeasesService
     {
-        private readonly IBookCatalogueStore _bookCatalogueStore;
+        private readonly ItemService _itemService;
         private readonly IReaderStore _readerStore;
 
-        public GetReaderLeasesService(IReaderStore readerStore, IBookCatalogueStore bookCatalogueStore)
+        public GetReaderLeasesService(IReaderStore readerStore, ItemService itemService)
         {
-            _bookCatalogueStore = bookCatalogueStore;
+            _itemService = itemService;
             _readerStore = readerStore;
         }
 
@@ -29,7 +30,7 @@ namespace Library.Leases.Application.Services
                 Date = x.OrderDate
             }).ToList();
 
-            var itemsFromOrders = _bookCatalogueStore.GetBooksByIds(orderDtos.Select(x => x.BookId));
+            var itemsFromOrders = _itemService.GetItemsByIds(orderDtos.Select(x => x.BookId));
 
             return orderDtos.Select(x =>
             {

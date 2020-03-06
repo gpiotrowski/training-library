@@ -30,7 +30,6 @@ namespace Library
             services.AddTransient<ItemService>();
             services.AddTransient<GetReaderLeasesService>();
             services.AddTransient<LeaseBookService>();
-            services.AddTransient<IBookCatalogueStore, BookCatalogueStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

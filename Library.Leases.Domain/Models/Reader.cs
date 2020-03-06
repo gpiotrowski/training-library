@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
+using Library.Leases.Domain.Exceptions;
 
 namespace Library.Leases.Domain.Models
 {
@@ -36,14 +37,14 @@ namespace Library.Leases.Domain.Models
 
         public void LeaseBook(int bookId)
         {
-            if (MaxConcurrentLeases >= GetActiveLeases().Count)
+            if (MaxConcurrentLeases > GetActiveLeases().Count)
             {
                 var lease = new Lease(bookId);
                 Leases.Add(lease);
             }
             else
             {
-                throw new NotImplementedException();
+                throw new MaxConcurrentLeasesExceeded();
             }
         }
     }

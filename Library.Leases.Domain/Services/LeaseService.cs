@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
 using Library.Leases.Domain.Dtos;
+using Library.Leases.Domain.Exceptions;
 using Library.Leases.Domain.Models;
 using Library.Leases.Domain.Stores;
 
@@ -21,25 +22,36 @@ namespace Library.Leases.Domain.Services
 
         public OperationStatus LeaseBook(NewLeaseDto leaseDto)
         {
-            var requestedBook = _bookCatalogueStore.GetBookById(leaseDto.BookId);
-            if (requestedBook?.AvailableQuantity > 0)
+            try
             {
-                var reader = _readerStore.GetReaderById(leaseDto.ReaderId);
-                reader.LeaseBook(leaseDto.BookId);
+                var requestedBook = _bookCatalogueStore.GetBookById(leaseDto.BookId);
+                if (requestedBook?.AvailableQuantity > 0)
+                {
+                    var reader = _readerStore.GetReaderById(leaseDto.ReaderId);
+                    reader.LeaseBook(leaseDto.BookId);
 
-                requestedBook.AvailableQuantity--;
+                    requestedBook.AvailableQuantity--;
 
-                _readerStore.SaveReader(reader);
-                _bookCatalogueStore.UpdateBookQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
+                    _readerStore.SaveReader(reader);
+                    _bookCatalogueStore.UpdateBookQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
 
-                return OperationStatus.CompletedSuccessfully;
+                    return OperationStatus.CompletedSuccessfully;
+                }
+
+                return new OperationStatus()
+                {
+                    Success = false,
+                    ErrorMessage = "Requested book is not available"
+                };
             }
-
-            return new OperationStatus()
+            catch (MaxConcurrentLeasesExceeded e)
             {
-                Success = false,
-                ErrorMessage = "Requested book is not available"
-            };
+                return new OperationStatus()
+                {
+                    Success = false,
+                    ErrorMessage = e.Message
+                };
+            }
         }
 
         public IEnumerable<LeaseDto> GetReaderOrders(Guid readerId)

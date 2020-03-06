@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Library.Leases.Domain.Dtos;
 using Library.Leases.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace Library.Controllers
         [HttpPost("placeOrder")]
         public IActionResult PlaceOrder(NewLeaseDto leaseDto)
         {
-            var operationStatus = _leaseService.PlaceOrder(leaseDto);
+            var operationStatus = _leaseService.LeaseBook(leaseDto);
 
             if (!operationStatus.Success)
             {
@@ -30,9 +31,9 @@ namespace Library.Controllers
         }
 
         [HttpGet("checkMyOrders")]
-        public IEnumerable<LeaseDto> CheckMyOrders(int userId)
+        public IEnumerable<LeaseDto> CheckMyOrders(Guid readerId)
         {
-            return _leaseService.GetUserOrders(userId);
+            return _leaseService.GetReaderOrders(readerId);
         }
     }
 }

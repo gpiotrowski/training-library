@@ -1,7 +1,7 @@
 using Library.Items.Services.Services;
 using Library.Leases.Domain.Services;
 using Library.Leases.Domain.Stores;
-using Library.Orders.Infrastructure.Stores;
+using Library.Leases.Infrastructure.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,13 +24,12 @@ namespace Library
         {
             services.AddControllers();
 
-            services.AddSingleton<IUserStore, UserStore>();
-            services.AddSingleton<ILeaseStore, LeaseStore>();
+            services.AddSingleton<IReaderStore, ReaderStore>();
             services.AddSingleton<Items.Infrastructure.Stores.ItemStore>();
 
             services.AddTransient<ItemService>();
             services.AddTransient<LeaseService>();
-            services.AddTransient<IBookCatalogueStore, Orders.Infrastructure.Stores.BookCatalogueStore>();
+            services.AddTransient<IBookCatalogueStore, BookCatalogueStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

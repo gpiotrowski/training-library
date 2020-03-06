@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Library.Leases.Domain.Entities;
+using Library.Leases.Domain.Models;
 using Library.Leases.Domain.Stores;
 using ItemModuleItemStore = Library.Items.Infrastructure.Stores.ItemStore;
 using ItemModuleItem = Library.Items.Infrastructure.Data.Item;
 
-namespace Library.Orders.Infrastructure.Stores
+namespace Library.Leases.Infrastructure.Stores
 {
     public class BookCatalogueStore : IBookCatalogueStore
     {

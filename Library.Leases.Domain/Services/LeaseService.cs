@@ -3,60 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Core;
 using Library.Leases.Domain.Dtos;
-using Library.Leases.Domain.Entities;
+using Library.Leases.Domain.Models;
 using Library.Leases.Domain.Stores;
 
 namespace Library.Leases.Domain.Services
 {
     public class LeaseService
     {
-        private readonly IUserStore _userStore;
-        private readonly ILeaseStore _leaseStore;
+        private readonly IReaderStore _readerStore;
         private readonly IBookCatalogueStore _bookCatalogueStore;
 
-        public LeaseService(IBookCatalogueStore bookCatalogueStore, IUserStore userStore, ILeaseStore leaseStore)
+        public LeaseService(IBookCatalogueStore bookCatalogueStore, IReaderStore readerStore)
         {
-            _userStore = userStore;
-            _leaseStore = leaseStore;
+            _readerStore = readerStore;
             _bookCatalogueStore = bookCatalogueStore;
         }
 
-        public OperationStatus PlaceOrder(NewLeaseDto leaseDto)
+        public OperationStatus LeaseBook(NewLeaseDto leaseDto)
         {
             var requestedBook = _bookCatalogueStore.GetBookById(leaseDto.BookId);
             if (requestedBook?.AvailableQuantity > 0)
             {
-                var user = _userStore.GetUserById(leaseDto.UserId);
-                var inProgressOrders = _leaseStore.GetUserLeaseInProgressQty(leaseDto.UserId);
+                var reader = _readerStore.GetReaderById(leaseDto.ReaderId);
+                reader.LeaseBook(leaseDto.BookId);
 
-                if (user.BookLimit >= inProgressOrders)
-                {
-                    requestedBook.AvailableQuantity--;
+                requestedBook.AvailableQuantity--;
 
-                    _userStore.SaveUser(user);
+                _readerStore.SaveReader(reader);
+                _bookCatalogueStore.UpdateBookQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
 
-                    var order = new Lease()
-                    {
-                        BookId = leaseDto.BookId,
-                        IsReturned = false,
-                        OrderDate = DateTime.UtcNow,
-                        ReturnDate = null,
-                        UserId = leaseDto.UserId
-                    };
-
-                    _bookCatalogueStore.UpdateBookQuantity(requestedBook.Id, requestedBook.AvailableQuantity);
-                    _leaseStore.Lease(order);
-
-                    return OperationStatus.CompletedSuccessfully;
-                }
-                else
-                {
-                    return new OperationStatus()
-                    {
-                        Success = false,
-                        ErrorMessage = "Book limit exceeded"
-                    };
-                }
+                return OperationStatus.CompletedSuccessfully;
             }
 
             return new OperationStatus()
@@ -66,13 +42,14 @@ namespace Library.Leases.Domain.Services
             };
         }
 
-        public IEnumerable<LeaseDto> GetUserOrders(int userId)
+        public IEnumerable<LeaseDto> GetReaderOrders(Guid readerId)
         {
-            var userOrders = _leaseStore.GetUserLeases(userId);
+            var reader = _readerStore.GetReaderById(readerId);
+            var readerLeases = reader.GetActiveLeases();
 
-            var orderDtos = userOrders.Select(x => new LeaseDto()
+            var orderDtos = readerLeases.Select(x => new LeaseDto()
             {
-                UserId = x.UserId,
+                ReaderId = reader.Id,
                 BookId = x.BookId,
                 Date = x.OrderDate
             }).ToList();

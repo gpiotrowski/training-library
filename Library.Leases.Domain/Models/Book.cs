@@ -1,4 +1,4 @@
-﻿namespace Library.Leases.Domain.Entities
+﻿namespace Library.Leases.Domain.Models
 {
     public class Book
     {

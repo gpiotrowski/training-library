@@ -1,8 +1,10 @@
-﻿namespace Library.Leases.Domain.Dtos
+﻿using System;
+
+namespace Library.Leases.Domain.Dtos
 {
     public class NewLeaseDto
     {
-        public int UserId { get; set; }
+        public Guid ReaderId { get; set; }
         public int BookId { get; set; }
     }
 }

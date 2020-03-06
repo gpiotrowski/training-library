@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Library.Leases.Domain.Entities;
+using Library.Leases.Domain.Models;
 
 namespace Library.Leases.Domain.Stores
 {

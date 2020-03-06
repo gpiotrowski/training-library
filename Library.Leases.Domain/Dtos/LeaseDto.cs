@@ -4,7 +4,7 @@ namespace Library.Leases.Domain.Dtos
 {
     public class LeaseDto
     {
-        public int UserId { get; set; }
+        public Guid ReaderId { get; set; }
         public int BookId { get; set; }
         public string BookName { get; set; }
         public string BookAuthor { get; set; }

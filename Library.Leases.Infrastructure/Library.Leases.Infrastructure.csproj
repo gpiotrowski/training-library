@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library.Items.Infrastructure\Library.Items.Infrastructure.csproj" />
-    <ProjectReference Include="..\Library.Orders.Domain\Library.Leases.Domain.csproj" />
+    <ProjectReference Include="..\Library.Leases.Domain\Library.Leases.Domain.csproj" />
   </ItemGroup>
 
 </Project>
